@@ -1,3 +1,5 @@
+/*CLASSE CRIADA PARA SALVAR AS INFORMAÇÕES NO BANCO DE DADOS*/
+
 package praticando.vendas.praticandovendas.model;
 
 import java.math.BigDecimal;
