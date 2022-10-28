@@ -28,7 +28,19 @@ public class ProdutoController {
 	
 	@GetMapping
 	public List<ProdutoFormRequest> getLista(){
+		
 		return repository.findAll().stream().map(ProdutoFormRequest::fromModel).collect(Collectors.toList()); // PODE USAR DESSA MANEIRA QUANDO RECEBE APENAS 1 PARAMETRO
+	}
+	
+	@GetMapping("{id}")
+	public ResponseEntity <ProdutoFormRequest> getById(@PathVariable Long id) {
+		Optional<Produto> produtoExistente = repository.findById(id);
+		if(produtoExistente.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		
+		var produto = produtoExistente.map(ProdutoFormRequest::fromModel).get();
+		return ResponseEntity.ok(produto);
 	}
 	
 
